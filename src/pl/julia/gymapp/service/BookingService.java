@@ -10,7 +10,6 @@ import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-
 public class BookingService {
     private BookingRepository repository;
 
@@ -21,8 +20,7 @@ public class BookingService {
     public String book(User user, Training training) {
 
         for (Booking b : repository.getAllBookings()) {
-            if (b.getUser().getId() == user.getId() &&
-                    b.getTraining().getId() == training.getId()) {
+            if (b.getUser().getId() == user.getId() && b.getTraining().getId() == training.getId()) {
                 return "Already booked!";
             }
         }
@@ -52,8 +50,7 @@ public class BookingService {
 
         System.out.println("Bookings:");
         for (Booking b : bookings) {
-            System.out.println(
-                    "User: " + b.getUser().getName() + " | Training: " + b.getTraining().getName());
+            System.out.println("User: " + b.getUser().getName() + " | Training: " + b.getTraining().getName());
         }
     }
 

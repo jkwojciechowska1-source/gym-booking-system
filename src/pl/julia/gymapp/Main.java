@@ -53,13 +53,10 @@ public class Main {
 
             if (choice == 1) {
                 System.out.println("Choose user:");
-
                 for (User u : users) {
                     System.out.println(u.getId() + ". " + u.getName());
                 }
-
                 int userChoice = Integer.parseInt(scanner.nextLine());
-
                 User selectedUser = null;
 
                 for (User u : users) {
@@ -67,34 +64,26 @@ public class Main {
                         selectedUser = u;
                     }
                 }
-
                 if (selectedUser == null) {
                     System.out.println("Invalid user!");
                     continue;
                 }
-
                 System.out.println("Choose training:");
-
                 for (Training t : trainings) {
                     System.out.println(t.getId() + ". " + t.getName());
                 }
-
                 int trainingChoice = Integer.parseInt(scanner.nextLine());
-
                 Training selectedTraining = null;
-
                 for (Training t : trainings) {
                     if (t.getId() == trainingChoice) {
                         selectedTraining = t;
                     }
                 }
-
                 if (selectedTraining == null) {
                     System.out.println("Invalid training!");
                     continue;
                 }
-
-                System.out.println(service.book(selectedUser, selectedTraining));
+                System.out.println(service.book(selectedUser, selectedTraining))
 
             } else if (choice == 2) {
                 service.showBookings();
@@ -102,11 +91,8 @@ public class Main {
             } else if (choice == 3) {
                 System.out.print("Enter user name: ");
                 String name = scanner.nextLine();
-
                 int newId = users.size() + 1;
-
                 users.add(new User(newId, name));
-
                 System.out.println("User added!");
 
             } else if (choice == 0) {
@@ -117,17 +103,12 @@ public class Main {
 
             } else if (choice == 4) {
                 System.out.print("Enter training name: ");
-                scanner.nextLine(); // ważne!
+                scanner.nextLine();
                 String name = scanner.nextLine();
-
                 System.out.print("Enter max participants: ");
-
                 int max = Integer.parseInt(scanner.nextLine());
-
                 int newId = trainings.size() + 1;
-
                 trainings.add(new Training(newId, name, max));
-
                 System.out.println("Training added!");
 
             } else {
