@@ -1,22 +1,25 @@
 # Gym Booking App (Java)
 
-Simple console application for managing gym training bookings.
+Java console application for managing gym training bookings.
 
 ## Features
 - Add users
 - Add trainings
-- Book trainings
+- Book training sessions
 - Prevent duplicate bookings
 - Limit training capacity
-- Save and load bookings from file
+- Save bookings to file
+- Load bookings from file
 
 ## Technologies
 - Java
-- OOP (model, service, repository)
+- OOP
+- File I/O
 
 ## How to run
-1. Open project in IntelliJ
-2. Run `Main.java`
+1. Clone the repository
+2. Open in IntelliJ
+3. Run `Main.java`
 
 ## Notes
 - Data is stored in a text file (`bookings.txt`)
