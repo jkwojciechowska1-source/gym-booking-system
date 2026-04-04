@@ -9,7 +9,6 @@ import pl.julia.gymapp.service.BookingService;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
 
         BookingRepository repo = new BookingRepository();

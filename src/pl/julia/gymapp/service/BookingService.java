@@ -56,12 +56,10 @@ public class BookingService {
 
     public void saveToFile() {
         try (FileWriter writer = new FileWriter("bookings.txt")) {
-
             for (Booking b : repository.getAllBookings()) {
                 writer.write(
                         b.getUser().getId() + "," + b.getTraining().getId() + "\n");
             }
-
             System.out.println("Bookings saved to file!");
 
         } catch (IOException e) {
@@ -71,7 +69,6 @@ public class BookingService {
 
     public void loadFromFile(List<User> users, List<Training> trainings) {
         try (BufferedReader reader = new BufferedReader(new FileReader("bookings.txt"))) {
-
             String line;
 
             while ((line = reader.readLine()) != null) {
@@ -99,7 +96,6 @@ public class BookingService {
                     repository.addBooking(new Booking(foundUser, foundTraining));
                 }
             }
-
             System.out.println("Bookings loaded from file!");
 
         } catch (IOException e) {
