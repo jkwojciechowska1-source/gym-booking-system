@@ -2,10 +2,12 @@ package pl.julia.gymapp;
 
 import java.util.List;
 import java.util.ArrayList;
+
 import pl.julia.gymapp.model.User;
 import pl.julia.gymapp.model.Training;
 import pl.julia.gymapp.repository.BookingRepository;
 import pl.julia.gymapp.service.BookingService;
+
 import java.util.Scanner;
 
 public class Main {
@@ -30,7 +32,7 @@ public class Main {
         service.loadFromFile(users, trainings);
 
         while (true) {
-            System.out.print("---MENU---");
+            System.out.println("\n--- MENU ---");
             System.out.println("\n1. Book training");
             System.out.println("2. Show bookings");
             System.out.println("3. Add user");
@@ -52,9 +54,11 @@ public class Main {
 
             if (choice == 1) {
                 System.out.println("Choose user:");
+
                 for (User u : users) {
                     System.out.println(u.getId() + ". " + u.getName());
                 }
+
                 int userChoice = Integer.parseInt(scanner.nextLine());
                 User selectedUser = null;
 
@@ -63,26 +67,33 @@ public class Main {
                         selectedUser = u;
                     }
                 }
+
                 if (selectedUser == null) {
                     System.out.println("Invalid user!");
                     continue;
                 }
+
                 System.out.println("Choose training:");
+
                 for (Training t : trainings) {
                     System.out.println(t.getId() + ". " + t.getName());
                 }
+
                 int trainingChoice = Integer.parseInt(scanner.nextLine());
                 Training selectedTraining = null;
+
                 for (Training t : trainings) {
                     if (t.getId() == trainingChoice) {
                         selectedTraining = t;
                     }
                 }
+
                 if (selectedTraining == null) {
                     System.out.println("Invalid training!");
                     continue;
                 }
-                System.out.println(service.book(selectedUser, selectedTraining))
+
+                System.out.println(service.book(selectedUser, selectedTraining));
 
             } else if (choice == 2) {
                 service.showBookings();
@@ -94,21 +105,20 @@ public class Main {
                 users.add(new User(newId, name));
                 System.out.println("User added!");
 
-            } else if (choice == 0) {
-                break;
-
-            } else if (choice == 5) {
-                    service.saveToFile();
-
             } else if (choice == 4) {
                 System.out.print("Enter training name: ");
-                scanner.nextLine();
                 String name = scanner.nextLine();
                 System.out.print("Enter max participants: ");
                 int max = Integer.parseInt(scanner.nextLine());
                 int newId = trainings.size() + 1;
                 trainings.add(new Training(newId, name, max));
                 System.out.println("Training added!");
+
+            } else if (choice == 5) {
+                service.saveToFile();
+
+            } else if (choice == 0) {
+                break;
 
             } else {
                 System.out.println("Invalid option! Try again.");
