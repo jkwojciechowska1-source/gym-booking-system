@@ -99,12 +99,23 @@ public class Main {
                 }
             }
 
-            System.out.print("Enter max participants: ");
-            int max = Integer.parseInt(scanner.nextLine());
+                int max;
 
-            int newId = trainings.size() + 1;
-            trainings.add(new Training(newId, name, max));
-            System.out.println("Training added!");
+                while (true) {
+                    System.out.print("Enter max participants: ");
+                    try {
+                        max = Integer.parseInt(scanner.nextLine());
+
+                        if (max > 0) {
+                            break;
+                        } else {
+                            System.out.println("Number must be greater than 0.");
+                        }
+
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input! Enter a number.");
+                    }
+                }
 
             } else if (choice == 5) {
                 service.saveToFile();
