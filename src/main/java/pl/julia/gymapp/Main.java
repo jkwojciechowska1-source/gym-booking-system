@@ -53,45 +53,12 @@ public class Main {
             }
 
             if (choice == 1) {
-                System.out.println("Choose user:");
 
-                for (User u : users) {
-                    System.out.println(u.getId() + ". " + u.getName());
-                }
+                User selectedUser = chooseUser(users, scanner);
+                if (selectedUser == null) continue;
 
-                int userChoice = Integer.parseInt(scanner.nextLine());
-                User selectedUser = null;
-
-                for (User u : users) {
-                    if (u.getId() == userChoice) {
-                        selectedUser = u;
-                    }
-                }
-
-                if (selectedUser == null) {
-                    System.out.println("Invalid user!");
-                    continue;
-                }
-
-                System.out.println("Choose training:");
-
-                for (Training t : trainings) {
-                    System.out.println(t.getId() + ". " + t.getName());
-                }
-
-                int trainingChoice = Integer.parseInt(scanner.nextLine());
-                Training selectedTraining = null;
-
-                for (Training t : trainings) {
-                    if (t.getId() == trainingChoice) {
-                        selectedTraining = t;
-                    }
-                }
-
-                if (selectedTraining == null) {
-                    System.out.println("Invalid training!");
-                    continue;
-                }
+                Training selectedTraining = chooseTraining(trainings, scanner);
+                if (selectedTraining == null) continue;
 
                 System.out.println(service.book(selectedUser, selectedTraining));
 
@@ -99,20 +66,45 @@ public class Main {
                 service.showBookings();
 
             } else if (choice == 3) {
-                System.out.print("Enter user name: ");
-                String name = scanner.nextLine();
+
+                String name;
+
+                while (true) {
+                    System.out.print("Enter user name: ");
+                    name = scanner.nextLine();
+
+                    if (name.matches("[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+")) {
+                        break;
+                    } else {
+                        System.out.println("Invalid name! Use only letters.");
+                    }
+                }
+
                 int newId = users.size() + 1;
                 users.add(new User(newId, name));
                 System.out.println("User added!");
 
             } else if (choice == 4) {
+
+            String name;
+
+            while (true) {
                 System.out.print("Enter training name: ");
-                String name = scanner.nextLine();
-                System.out.print("Enter max participants: ");
-                int max = Integer.parseInt(scanner.nextLine());
-                int newId = trainings.size() + 1;
-                trainings.add(new Training(newId, name, max));
-                System.out.println("Training added!");
+                name = scanner.nextLine();
+
+                if (name.matches("[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+")) {
+                    break;
+                } else {
+                    System.out.println("Invalid name! Use only letters.");
+                }
+            }
+
+            System.out.print("Enter max participants: ");
+            int max = Integer.parseInt(scanner.nextLine());
+
+            int newId = trainings.size() + 1;
+            trainings.add(new Training(newId, name, max));
+            System.out.println("Training added!");
 
             } else if (choice == 5) {
                 service.saveToFile();
@@ -124,5 +116,61 @@ public class Main {
                 System.out.println("Invalid option! Try again.");
             }
         }
+    }
+
+    private static User chooseUser(List<User> users, Scanner scanner) {
+        System.out.println("Choose user: ");
+
+        for (User u : users) {
+            System.out.println(u.getId() + ". " + u.getName());
+        }
+
+        int userChoice;
+
+        while (true) {
+            try {
+                userChoice = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
+        }
+
+        for (User u : users) {
+            if (u.getId() == userChoice) {
+                return u;
+            }
+        }
+
+        System.out.println("Invalid user!");
+        return null;
+    }
+
+    private static Training chooseTraining(List<Training> trainings, Scanner scanner) {
+        System.out.println("Choose training:");
+
+        for (Training t : trainings) {
+            System.out.println(t.getId() + ". " + t.getName());
+        }
+
+        int trainingChoice;
+
+        while (true) {
+            try {
+                trainingChoice = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
+        }
+
+        for (Training t : trainings) {
+            if (t.getId() == trainingChoice) {
+                return t;
+            }
+        }
+
+        System.out.println("Invalid training!");
+        return null;
     }
 }
