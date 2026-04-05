@@ -1,4 +1,4 @@
-# Gym Booking App (Java)
+# Gym Booking System (Java)
 
 Java console application for managing gym training bookings.
 
