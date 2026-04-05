@@ -86,18 +86,18 @@ public class Main {
 
             } else if (choice == 4) {
 
-            String name;
+                String name;
 
-            while (true) {
-                System.out.print("Enter training name: ");
-                name = scanner.nextLine();
+                while (true) {
+                    System.out.print("Enter training name: ");
+                    name = scanner.nextLine();
 
-                if (name.matches("[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+")) {
-                    break;
-                } else {
-                    System.out.println("Invalid name! Use only letters.");
+                    if (name.matches("[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+")) {
+                        break;
+                    } else {
+                        System.out.println("Invalid name! Use only letters.");
+                    }
                 }
-            }
 
                 int max;
 
@@ -116,6 +116,10 @@ public class Main {
                         System.out.println("Invalid input! Enter a number.");
                     }
                 }
+
+                int newId = trainings.size() + 1;
+                trainings.add(new Training(newId, name, max));
+                System.out.println("Training added!");
 
             } else if (choice == 5) {
                 service.saveToFile();
