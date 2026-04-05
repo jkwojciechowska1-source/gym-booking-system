@@ -18,8 +18,8 @@ Java console application for managing gym training bookings.
 - File I/O
 
 ## How to run
-1. Clone the repository
-2. Open in IntelliJ
+1. Download the repository (ZIP or clone)
+2. Open the project in your IDE
 3. Run `Main.java`
 
 ## Notes
