@@ -33,3 +33,6 @@ bookings.txt
 
 .idea/
 *.iml
+
+*.class
+target/

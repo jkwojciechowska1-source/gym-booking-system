@@ -20,9 +20,9 @@ public class Main {
 
         List<Training> trainings = new ArrayList<>();
 
-        trainings.add(new Training(1, "Siłowy", 5));
-        trainings.add(new Training(2, "Cardio", 10));
-        trainings.add(new Training(3, "Fitness", 15));
+        trainings.add(new Training(1, "Strength Training", 5));
+        trainings.add(new Training(2, "Full Body Workout", 10));
+        trainings.add(new Training(3, "Fitness Class", 15));
 
         List<User> users = new ArrayList<>();
 
@@ -33,12 +33,12 @@ public class Main {
 
         while (true) {
             System.out.println("\n--- MENU ---");
-            System.out.println("\n1. Book training");
+            System.out.println("1. Book training");
             System.out.println("2. Show bookings");
             System.out.println("3. Add user");
             System.out.println("4. Add training");
             System.out.println("5. Save to file");
-            System.out.println("0. Exit");
+            System.out.println("0. Exit\n");
 
             int choice;
 
